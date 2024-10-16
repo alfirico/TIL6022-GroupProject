@@ -7,6 +7,10 @@ df = pd.read_csv('FinalCommuteData/total_commuting_data.csv')
 df_years = df[df['Year'].isin([2018, 2019, 2022, 2023])]
 df_weekdays = df_years[df_years['Trip characteristics'].isin(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'])]
 
+# Order weekdays
+order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+df_weekdays['Trip characteristics'] = pd.Categorical(df_weekdays['Trip characteristics'], categories=order, ordered=True)
+
 # Group per year and weekday and generate table
 df_weekdays_cartrip = df_weekdays.groupby(['Year', 'Trip characteristics'])['CarTrips'].mean().unstack()
 
@@ -14,8 +18,6 @@ df_weekdays_cartrip = df_weekdays.groupby(['Year', 'Trip characteristics'])['Car
 df_weekdays_cartrip['Total'] = df_weekdays_cartrip.sum(axis=1) / 5
 
 # Adjust order, layout and labels
-order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
-df_weekdays['Trip characteristics'] = pd.Categorical(df_weekdays['Trip characteristics'], categories=order, ordered=True)
 df_weekdays_cartrip = df_weekdays_cartrip.round(3)
 df_weekdays_cartrip.columns.name = 'Average car trip/person/weekday'
 
