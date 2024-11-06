@@ -67,14 +67,23 @@ for i in file_year:
             traffic_jam_count[int(i)-2018][int(j)-1][(get_day_of_week(split_date(row["StartDateJam"]))-1)] += 1
             traffic_jam_heaviness[int(i)-2018][int(j)-1][(get_day_of_week(split_date(row["StartDateJam"]))-1)] += int(row["HeavinessJam"].replace(",",""))\
 
-#save data to csv file for easier processing in the future
+#save count data to csv file for easier processing in the future
 for i in file_year:
-        rel_file_path_csv = "traffic-jam-data\\processed_data"+"\\%s_processed.csv" % i
+        rel_file_path_csv = "traffic-jam-data\\processed_data"+"\\%s_count_processed.csv" % i
         abs_file_path_csv = os.path.join(script_dir, rel_file_path_csv)
         with open(abs_file_path_csv, 'w', newline = '') as csvfile:
             writer = csv.writer(csvfile)
             for j in file_month:
                 writer.writerow(traffic_jam_count[int(i)-2018][int(j)-1][:])
+
+#save heaviness data to csv file for easier processing in the future
+for i in file_year:
+        rel_file_path_csv = "traffic-jam-data\\processed_data"+"\\%s_heaviness_processed.csv" % i
+        abs_file_path_csv = os.path.join(script_dir, rel_file_path_csv)
+        with open(abs_file_path_csv, 'w', newline = '') as csvfile:
+            writer = csv.writer(csvfile)
+            for j in file_month:
+                writer.writerow(traffic_jam_heaviness[int(i)-2018][int(j)-1][:])   
 
 #create plots
 fig, axs_count = plt.subplots(2,2)
