@@ -1,9 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import psutil
-import time
 import datetime
+import os
 
 
 import datetime
@@ -50,7 +49,8 @@ weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 months = ["January", "February", "March", "April", "May", "June", "July", 
           "August", "September", "October", "November", "December"]
 
-
+#get the location of the python file
+script_dir = os.path.dirname(__file__)
 
 #populate a list of months and years for future iteration through files
 for i in year_list:
@@ -61,8 +61,9 @@ for i in year_list:
 #read in data to 
 for i in file_year:
     for j in file_month:
-        file_path = "C:\\Users\\thoma\\Documents\\TIL_6022_Python\\"+"TIL6022-GroupProject\\traffic-jam-data\\filtered_data"+"\\%s-%s_rws_filedata_filtered.csv" % (i, j)
-        temp_data=pd.read_csv(file_path)
+        rel_file_path = "traffic-jam-data\\filtered_data"+"\\%s-%s_rws_filedata_filtered.csv" % (i, j)
+        abs_file_path = os.path.join(script_dir, rel_file_path)
+        temp_data=pd.read_csv(abs_file_path)
         temp_data.set_index("NLSitNumber")
         for index, row in temp_data.iterrows():
             traffic_jam_count[int(i)-2018][int(j)-1][(get_day_of_week(split_date(row["StartDateJam"]))-1)] += 1
