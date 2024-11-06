@@ -33,9 +33,7 @@ def translate(text):
         'een':'a',
         'met':'with',
         'geen oorzaak gemeld':'no cause mentioned',
-        'ga oorzaak gemeld':'no cause mentioned',
-        'aflopend':'descending',
-        'oplopend':'ascending'
+        'ga oorzaak gemeld':'no cause mentioned'
     }
     for dutch, english in translations.items():
         text = text.replace(dutch, english)

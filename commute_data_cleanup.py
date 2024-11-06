@@ -67,3 +67,5 @@ cols.insert(0, cols.pop(cols.index('Year')))
 merged_commute_car_df = merged_commute_car_df[cols]
 file_path = os.path.join('FinalCommuteData', 'total_commuting_data.csv')
 merged_commute_car_df.to_csv(file_path, index=False)
+
+df_head()

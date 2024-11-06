@@ -1,3 +1,4 @@
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -122,4 +123,5 @@ for ax, year in zip(axs_heaviness.flat, year_list):
     ax.set_ylabel("Total Heaviness of Traffic Jams")    
     
 fig.tight_layout()
+
 plt.show()
