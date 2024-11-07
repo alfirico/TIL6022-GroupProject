@@ -1,7 +1,15 @@
+'''
+This code combines the datasets in the CommuteData folder. This folder contains both the weekday trip data for every year,
+as well as the travel modes of the trips per year.
+This file combines all the weekday trip data into a single dataframe with only the relevant information, and multiplies it by
+the car trip data to create a final dataset (saved in FinalCommuteData) that contains the car trips done by weekday per year, for commuting
+
+'''
+
 import pandas as pd
 import os
 
-# Folder path and CSV files
+# Access to CSV files
 folder_path = "CommuteData"
 csv_files = [
     "2018-weekday-trip-data.csv",
@@ -16,12 +24,12 @@ csv_files = [
 commute_dfs = []
 total_trips_dfs = []
 
-# Load and clean data
+# Load data
 for file in csv_files:
     file_path = os.path.join(folder_path, file)
     df = pd.read_csv(file_path, delimiter=';', decimal=',', on_bad_lines='skip')
     year = file.split('-')[0]
-    df['Year'] = int(year)
+    df['Year'] = int(year)        # Use the year in the file name as a variable in the dataframe      
 
     commute_data = df[df['Travel motives'].str.contains('commute', case=False, na=False)]
     total_trips_data = df[~df['Travel motives'].str.contains('commute', case=False, na=False)]
@@ -45,8 +53,10 @@ modes_df = pd.read_csv(modes_file_path, delimiter=';', decimal=',', on_bad_lines
 # Separate and clean modes data
 commute_mode_df = modes_df[modes_df['Travel motives'].str.contains('commute', case=False, na=False)]
 total_mode_df = modes_df[~modes_df['Travel motives'].str.contains('commute', case=False, na=False)]
+
 commute_mode_df = commute_mode_df.drop(columns=['Population', 'Margins', 'Region characteristics', 'Travel motives'], errors='ignore')
 total_mode_df = total_mode_df.drop(columns=['Population', 'Margins', 'Region characteristics', 'Travel motives'], errors='ignore')
+
 commute_mode_df.rename(columns={'Periods': 'Year'}, inplace=True)
 total_mode_df.rename(columns={'Periods': 'Year'}, inplace=True)
 
