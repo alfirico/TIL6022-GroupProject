@@ -10,7 +10,8 @@ import glob
 import os
 
 # Path to the data files
-path = r'C:\Users\BodMa\Documents\TU Delft\MSc TIL\2024-2025\Q1\TIL6022 - TIL Programming\Project\data'
+#path = r'C:\Users\BodMa\Documents\TU Delft\MSc TIL\2024-2025\Q1\TIL6022 - TIL Programming\Project\data'
+path = "traffic-jam-data/data"
 
 # Load all files into a list of DataFrames
 all_files = glob.glob(os.path.join(path, "*.csv"))
@@ -87,7 +88,8 @@ for file in all_files:
 
     # Save the filtered DataFrame seperately
     new_file_name = f'{year_month}_rws_filedata_filtered.csv'
-    new_path =r'C:\Users\BodMa\Documents\TU Delft\MSc TIL\2024-2025\Q1\TIL6022 - TIL Programming\Project\data\filtered data'
+    #new_path =r'C:\Users\BodMa\Documents\TU Delft\MSc TIL\2024-2025\Q1\TIL6022 - TIL Programming\Project\data\filtered data'
+    new_path = 'traffic-jam-data/filtered_data'
     filtered_df.to_csv(os.path.join(new_path, new_file_name), index=False)
 
 print("Filtering complete")
