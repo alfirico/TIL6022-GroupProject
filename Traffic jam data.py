@@ -91,3 +91,37 @@ for file in all_files:
     filtered_df.to_csv(os.path.join(new_path, new_file_name), index=False)
 
 print("Filtering complete")
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Assuming the following arrays were populated with actual data in the original code
+n_years = 4  # 2018, 2019, 2022, 2023
+n_weekdays = 5  # Monday to Friday
+
+# Sample data for demonstration purposes; in real use, these would be populated from actual data files
+traffic_jam_count = np.random.randint(1000, 5000, (n_years, 12, n_weekdays))  # counts for 12 months
+traffic_jam_heaviness = np.random.randint(1e6, 5e6, (n_years, 12, n_weekdays))  # heaviness for 12 months
+
+# Sum across months to get yearly data for each weekday
+total_traffic_jam_count_per_year = np.sum(traffic_jam_count, axis=1)
+total_traffic_jam_heaviness_per_year = np.sum(traffic_jam_heaviness, axis=1)
+
+# Years and weekdays labels
+years = ["2018", "2019", "2022", "2023"]
+weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+
+# Plotting the total number of traffic jams with years on the horizontal axis
+plt.figure(figsize=(10, 6))
+width = 0.15  # Width of each bar
+
+# Plot each weekday's data with an offset to align bars side by side for each year
+for i, weekday in enumerate(weekdays):
+    plt.bar(np.arange(len(years)) + i * width, total_traffic_jam_count_per_year[:, i], width=width, label=weekday)
+
+plt.xticks(np.arange(len(years)) + width * 2, years)  # Center ticks under grouped bars
+plt.ylabel("Total Number of Traffic Jams")
+plt.xlabel("Year")
+plt.title("Total Number of Traffic Jams per Year by Weekday")
+plt.legend(title="Weekday")
+plt.show()
