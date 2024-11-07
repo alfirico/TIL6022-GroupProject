@@ -1,4 +1,15 @@
-# -*- coding: utf-8 -*-
+"""
+Generates a graph of total traffic heaviness across a time period
+
+This program takes input in the form of CSV files in a format
+provided by the Rijkswaterstaat and edited into English by another program.
+It processes the data to collect the total heaviness of traffic jams
+for each day of the week across the years 2018, 2019, 2022, and 2023.
+It then generates a clustered bar chart with the major x ticks being
+the year and the minor ticks being the day of the week
+
+
+"""
 
 import numpy as np
 import pandas as pd
