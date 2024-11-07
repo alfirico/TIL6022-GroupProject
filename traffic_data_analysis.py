@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import datetime
 import os
 import csv
+import matplotlib.gridspec as gridspec
 
 #converts date into three integers, one for day, month, and year
 def split_date(date_str):
@@ -100,15 +101,20 @@ for ax, year in zip(axs_count.flat, year_list):
     for month in range(len(months)):
         offset = width * multiplier
             
-        rects=ax.bar(x+offset, traffic_jam_count[int(year)-2018, month, :], width, label = month)
+        rects=ax.bar(x+offset, traffic_jam_count[int(year)-2018, month, :], 
+                     width, label = month)
         multiplier += 1
     plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
             
     ax.set_xticks(x + width, weekdays)
     ax.set_xticklabels(weekdays)
     ax.set_xlabel("Days of the week")
-    ax.set_ylabel("Number of Traffic Jams")
-    
+    ax.set_ylabel("Number")
+  
+ #Create title and legend for fig 1
+fig1.suptitle("Total Number of Traffic Jams")
+fig1.legend(months, loc="upper right", ncol = 1,bbox_to_anchor = (1.25,1))  
+
 #Generate heaviness graph using loops to create multiple value series
 for ax, year in zip(axs_heaviness.flat, year_list):
     multiplier = 0 
@@ -116,16 +122,24 @@ for ax, year in zip(axs_heaviness.flat, year_list):
     for month in range(len(months)):
         offset = width * multiplier
             
-        rects=ax.bar(x+offset, traffic_jam_heaviness[int(year)-2018, month, :], width, label = month)
+        rects=ax.bar(x+offset, traffic_jam_heaviness[int(year)-2018, month, :], 
+                     width, label = month)
         multiplier += 1
     plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
             
     ax.set_xticks(x + width, weekdays)
     ax.set_xticklabels(weekdays)
     ax.set_xlabel("Days of the week")
-    ax.set_ylabel("Total Heaviness of Traffic Jams")    
+    ax.set_ylabel("Total Heaviness")
     
-fig1.tight_layout()
-fig2.tight_layout()
+#Create title and legend for fig2
+fig2.suptitle("Total Heaviness of Traffic Jams")
+fig2.legend(months, loc="upper right", ncol = 1,bbox_to_anchor = (1.25,1))
 
+#Update Font Size
+plt.rcParams.update({'font.size': 30})
+
+#Set layout for figures
+fig1.tight_layout(rect=[0, 0, 1, 0.95])
+fig2.tight_layout(rect=[0, 0, 1, 0.95])
 plt.show()
