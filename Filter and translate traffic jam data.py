@@ -3,6 +3,9 @@
 Created on Tue Oct  8 16:08:31 2024
 
 @author: BodMa
+
+This code filters and translates the entire traffic jam data sets from the government, 
+after which it creates new files ("filtered files") with the information needed. 
 """
 
 import pandas as pd
