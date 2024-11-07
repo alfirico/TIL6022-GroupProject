@@ -86,15 +86,12 @@ for i in file_year:
                 writer.writerow(traffic_jam_heaviness[int(i)-2018][int(j)-1][:])   
 
 #create plots
-fig, axs_count = plt.subplots(2,2)
-fig, axs_heaviness = plt.subplots(2,2)
-
-print(traffic_jam_count)
+fig1, axs_count = plt.subplots(2,2)
+fig2, axs_heaviness = plt.subplots(2,2)
 
 #set bar width and x range
 width = 0.075
 x=np.arange(0,5)
-
 
 #Generate total traffic jam graph using loops to create multiple value series
 for ax, year in zip(axs_count.flat, year_list):
@@ -128,6 +125,7 @@ for ax, year in zip(axs_heaviness.flat, year_list):
     ax.set_xlabel("Days of the week")
     ax.set_ylabel("Total Heaviness of Traffic Jams")    
     
-fig.tight_layout()
+fig1.tight_layout()
+fig2.tight_layout()
 
 plt.show()
