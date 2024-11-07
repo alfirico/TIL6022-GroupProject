@@ -32,10 +32,12 @@ script_dir = os.path.dirname(__file__)
 # Loop through the years and months to read data from all the CSV files
 for year in years:
     for month in range(1, 13):  # 1 to 12 months
-        file_month = str(month).zfill(2)  # Format month as two digits (01, 02, ...)
-
+        # Format month as two digits (01, 02, ...)
+        file_month = str(month).zfill(2)
+        
         # Construct file path based on the current year and month
-        file_path = os.path.join(script_dir, f"traffic-jam-data/filtered_data/{year}-{file_month}_rws_filedata_filtered.csv")
+        file_path = os.path.join(script_dir, f"traffic-jam-data/filtered_data/\
+                                 {year}-{file_month}_rws_filedata_filtered.csv")
 
         try:
             # Read the CSV file for the current month
@@ -48,11 +50,16 @@ for year in years:
         temp_data.set_index("NLSitNumber")
         for index, row in temp_data.iterrows():
             date_list = split_date(row["StartDateJam"])
-            day_of_week = get_day_of_week(date_list) - 1  # Convert to 0-indexed (0-4 for Monday-Friday)
+            
+            # Convert to 0-indexed (0-4 for Monday-Friday)
+            day_of_week = get_day_of_week(date_list) - 1  
             year_from_data = date_list[0]
 
-            if year_from_data in years and 0 <= day_of_week < n_weekdays:  # Check that year and weekday are in range
-                year_index = years.index(year_from_data)  # Map year to index (e.g., 2018 -> 0)
+            # Check that year and weekday are in range
+            if year_from_data in years and 0 <= day_of_week < n_weekdays:  
+                
+                # Map year to index (e.g., 2018 -> 0)
+                year_index = years.index(year_from_data)  
                 heaviness_value = int(row["HeavinessJam"].replace(",", ""))
                 traffic_jam_heaviness[year_index][day_of_week] += heaviness_value
 
@@ -63,7 +70,8 @@ fig, ax = plt.subplots()
 width = 0.15
 x = np.arange(len(years))
 
-# Plot a set of bars for each weekday, with each bar showing total heaviness for that weekday across years
+# Plot a set of bars for each weekday, with each bar showing total heaviness 
+#for that weekday across years
 for i, weekday in enumerate(weekdays):
     ax.bar(x + i * width, traffic_jam_heaviness[:, i], width, label=weekday)
 

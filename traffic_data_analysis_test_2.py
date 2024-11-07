@@ -6,7 +6,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
 import os
-import csv
 import matplotlib.gridspec as gridspec
 
 #converts date into three integers, one for day, month, and year
