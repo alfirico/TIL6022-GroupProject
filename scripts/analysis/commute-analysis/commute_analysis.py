@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the cleaned commuting data
-df = pd.read_csv('FinalCommuteData/total_commuting_data.csv')
+df = pd.read_csv('data/commute-data/final-commute-data/total_commuting_data.csv')
 
 # Filter data for chosen years and weekdays
 df_years = df[df['Year'].isin([2018, 2019, 2022, 2023])]

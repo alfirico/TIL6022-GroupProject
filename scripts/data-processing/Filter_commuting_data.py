@@ -10,7 +10,7 @@ import pandas as pd
 import os
 
 # Access to CSV files
-folder_path = "CommuteData"
+folder_path = "data/commute-data/raw_data/"
 csv_files = [
     "2018-weekday-trip-data.csv",
     "2019-weekday-trip-data.csv",
@@ -46,8 +46,7 @@ combined_commute_df = combined_commute_df.drop(columns=['Population', 'Margins',
 combined_total_trips_df = combined_total_trips_df.drop(columns=['Population', 'Margins', 'Region characteristics', 'Travel motives', 'Periods'], errors='ignore')
 
 # Load additional travel modes data
-modes_file = "per_person__travel_modes__travel_purpose_13102024_144003.csv"
-modes_file_path = os.path.join(folder_path, modes_file)
+modes_file_path = "data/commute-data/raw_data/per_person__travel_modes__travel_purpose_13102024_144003.csv"
 modes_df = pd.read_csv(modes_file_path, delimiter=';', decimal=',', on_bad_lines='skip')
 
 # Separate and clean modes data
@@ -75,5 +74,5 @@ merged_commute_car_df['CarTrips'] = merged_commute_car_df['Average per person pe
 cols = merged_commute_car_df.columns.tolist()
 cols.insert(0, cols.pop(cols.index('Year')))
 merged_commute_car_df = merged_commute_car_df[cols]
-file_path = os.path.join('FinalCommuteData', 'total_commuting_data.csv')
+file_path = 'data/commute-data/final-commute-data/total_commuting_data2.csv'
 merged_commute_car_df.to_csv(file_path, index=False)
