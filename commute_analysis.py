@@ -1,5 +1,8 @@
-'''Using the data created by the file commute_data_cleanup.py, this code will organize the data for general commuting considering the weekdays and years 
-in interest, outputing tbles and graphs for the analysis.'''
+'''
+Using the data created by the file commute_data_cleanup.py, this code will organize the data for general commuting considering the weekdays and years 
+in interest, outputing tables and graphs for the result analysis.
+'''
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
