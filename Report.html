@@ -7482,7 +7482,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Project-Group">Project Group<a class="anchor-link" href="#Project-Group">¶</a></h1><p>Members: Alfi Rico Davey, Artemis Kalapouti, Bo de Man, Mariana Julietti Pelozo, Thomas Mennill</p>
+<h1 id="Project-Group">Project Group<a class="anchor-link" href="#Project-Group">¶</a></h1><p>Group 1</p>
+<p>Members: Alfi Rico Davey, Artemis Kalapouti, Bo de Man, Mariana Julietti Pelozo, Thomas Mennill</p>
 <p>Student numbers: 6304419, 6223087, 5040213, 6304761, 6210139</p>
 </div>
 </div>
@@ -7494,7 +7495,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Research-Objective">Research Objective<a class="anchor-link" href="#Research-Objective">¶</a></h1><p><em>Requires data modeling and quantitative research in Transport, Infrastructure &amp; Logistics</em></p>
+<h1 id="Research-Objective">Research Objective<a class="anchor-link" href="#Research-Objective">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7505,8 +7506,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>To what extent did remote working affected traffic jams during weekdays on the Dutch highways, between the period of 2018 to 2023?</p>
-<p>Sub-questions:</p>
+<p>Main Reaserch Question:</p>
+<ul>
+<li>To what extent did remote working affected traffic jams during weekdays on the Dutch highways, between the period of 2018 to 2023?</li>
+</ul>
+<p>Sub-Questions:</p>
 <ul>
 <li>How does the frequency of working from home vary across different weekdays?</li>
 <li>How much did the pattern and the amount of people working remotely change in the period between 2018 to 2023?</li>
@@ -7534,7 +7538,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Methods">Methods<a class="anchor-link" href="#Methods">¶</a></h1><p>The data used is from five sources. The first and by far the largest data set is a list of every time there was traffic congestion on Dutch motorways, in the years 2018, 2019, 2022, and 2023 and across every month. This dataset also contains information about the specific date and time of the traffic, the cause of the traffic, its location, and others. The second dataset contains the average distance travelled per trip divided in a number of ways, including by whether the trip was a commute to work and the distance of the trip. The third dataset is the average distance travelled per trip divided by demographic information, such as by gender, education level, employment status, whether one possesses a driver's license, and more. The fourth dataset gives the proportion of people who are working from home in various EU countries, including the Netherlands. Finally, the last dataset gives the number of trips per day by mode and by year, including subsets that are just commuting, shopping, and other trips.</p>
+<h1 id="Methods">Methods<a class="anchor-link" href="#Methods">¶</a></h1><p>The data used is from three sources. The first and by far the largest data set is a list of every time there was traffic congestion on Dutch motorways, in the years 2018, 2019, 2022, and 2023 and across every month. This dataset also contains information about the specific date and time of the traffic, the cause of the traffic, its location, and others. The second dataset includes all the commuting information, such as number of trips done per weekday per person, distance, or duration. These can be separated by travel purpose (such as commuting), region, demographics, etc. and contain the data from 2018 - 2023. Finally, the third dataset contains the travel mode fractions used by demographic and travel purpose per year.</p>
 <p>The first data set was the most complex to use. It is in Dutch, so it needed to be translated and was far too large to translate manually. It also contains data that was deemed irrelevant, such as traffic jams which had causes other than congestion. This dataset was initially processed by translating it to English and removing traffic jams which were not caused by peak hour congestion, as these are not related to commuting. The data set remained very large and the information unwieldy, so it then needed to be processed further. Two values were examined in the analysis. The first was a simple count of the number of traffic jams, divided by month and day of the week. For example, the count for all Mondays in a month is added up, along with each other day of the week. The database also contains a value called "heaviness," which is simply the average length of the traffic jam multiplied by its duration and divided by 10^7. This heaviness value was deemed important because it allows a degree of understanding of the severity of each traffic jam. A traffic jam involving 15 cars has a much lower impact and is much less important than one involving 1000 cars, and the length and duration of the traffic jam allows for some understanding of each jam's severity relative to another. Thus, the heaviness was summed in a way similar to how the raw number of jams. This processing was done in the file "Filter_and_translate_traffic_jam_data.py" in the data-processing folder.</p>
 <p>The second and third data sets were combined into one. These datasets have the information on all the trips done in the period studied. This contains the purpose of travel, the amount of trips, distance, and duration of trips per weekday. There is also a separate dataset that contains information into the travel modes per purpose of travel per year. All of this information must be combined into a single dataset to know the amount of car trips done per weekday for commuting, per year.</p>
 <p>First, the yearly data is combined and irrelevant columns are removed. Then, from the third dataset, the fraction of car trips is extracted, and a final dataset is created with the final car trips per weekday for commuting (assuming the fraction of car trips is the same per weekday).
@@ -7550,13 +7554,35 @@ The resulting commute data was then processed separately for general commute tri
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Data-Used">Data Used<a class="anchor-link" href="#Data-Used">¶</a></h1><ol>
+<li>Traffic jam log per month:</li>
+</ol>
+<p><a href="https://downloads.rijkswaterstaatdata.nl/filedata/">https://downloads.rijkswaterstaatdata.nl/filedata/</a></p>
+<ol start="2">
+<li>Daily average commute time and distance per weekday per travel purposes, from 2018 to 2023:</li>
+</ol>
+<p><a href="https://opendata.cbs.nl/statline/#/CBS/en/dataset/85055eng/table?ts=1727687837173">https://opendata.cbs.nl/statline/#/CBS/en/dataset/85055eng/table?ts=1727687837173</a></p>
+<ol start="3">
+<li>Fraction of transport modes:</li>
+</ol>
+<p><a href="https://opendata.cbs.nl/statline/#/CBS/en/dataset/84710ENG/table?ts=1727863074020">https://opendata.cbs.nl/statline/#/CBS/en/dataset/84710ENG/table?ts=1727863074020</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Results-analysis-and-interpretation">Results analysis and interpretation<a class="anchor-link" href="#Results-analysis-and-interpretation">¶</a></h1><p>The dataset for commuting generated the following graphs, presenting the average commute trips per person on each weekday for the selected years. The first graph represents all commuting trips (bicycles, cars, public transport), while the second shows only car trips. (Done in the files "cartrip_commute_analysis.py" and "commute_analysis.py" in the commute-analysis folder)</p>
-<p><img alt="Figure 1" src="images/figure1.jpeg"/></p>
+<p><img alt="Figure 1" src="images/figure1.jpg"/></p>
 <p>Both graphs reveal a similar pattern, with car trips representing, on average, about 50% of all commute trips. A declining trend in commuting trips (by car and general) from 2018 to 2019 can be observed, followed by a more pronounced reduction over the last two years - approximately a 20% decrease on average. This decline does not appear to be correlated with the unemployment rate, which was higher in 2018 (4.87%) and 2019 (4.45%) compared to 2022 (3.52%) and 2023 (3.55%) (CBS Statline, 2024). The data then suggests an increase in remote work post-pandemic, as more employees no longer need to commute to work every day.</p>
 <p>Additionally, during the last two years, commuting trips were most frequent on Tuesdays, followed by Thursdays, Mondays, Wednesdays, and Fridays. This pattern diverges from 2018 and 2019, when Mondays were as significant as or even more frequent than Thursdays. The slight shift reflects the current scenario among hybrid-schedule employees, who often avoid commuting on Mondays and Fridays.</p>
 <p>Regarding traffic jams, the dataset generated the following graph, showing the "heaviness" of congestion per weekday. (Done in the file "heaviness_processing_and_graphing.py" in the traffic-analysis folder)</p>
 <p><img alt="Figure 2" src="images/figure2.jpeg"/></p>
-<p>Analysing the graph, there is a noticeable rise tendency in traffic jam heaviness, with 2023 showing a particularly significant growth. Tuesdays and Thursdays present the highest levels of congestion across all four years, with 2023 showing somewhat closer congestion levels across other weekdays, with a slightly lighter traffic load on Fridays. Since traffic jam heaviness reflects both the length and duration of congestion, it’s possible to imply that the increase of car ownership may be the most contributing factor for the boost in congestions in 2023, as other common factors that could influence it would likely have a lesser impact.</p>
+<p>Analysing the graph, there is a noticeable rise tendency in traffic jam heaviness, with 2023 showing a particularly significant growth. Tuesdays and Thursdays present the highest levels of congestion across all four years, with 2023 showing somewhat closer congestion levels across other weekdays, with a slightly lighter traffic load on Fridays. Since traffic jam heaviness reflects both the length and duration of congestion, it’s possible to imply that there was an increase of car ownership or other contributing factor that boosted congestions in 2023.</p>
 <p>Although Tuesdays and Thurdays are the "most frequent" weekdays in both analysis, for 2023, the decreasing pattern seen in commuting trips is not reflected in traffic congestion trends. Also, average commuting trips increased by 4% in 2023 compared to 2022, which could indicate that companies are gradually encouraging more frequent in-office work.</p>
 </div>
 </div>
@@ -7616,33 +7642,6 @@ The resulting commute data was then processed separately for general commute tri
 <p>Methods - Thomas</p>
 <p>Results analysis &amp; interpretation - Mariana</p>
 <p>Conclusion - Alfi</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Data-Used">Data Used<a class="anchor-link" href="#Data-Used">¶</a></h1>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>1.- Traffic jam log per month : 
-<a href="https://downloads.rijkswaterstaatdata.nl/filedata/">https://downloads.rijkswaterstaatdata.nl/filedata/</a></p>
-<p>2.- Daily average commute time and distance per weekday per travel purposes, from 2018 to 2023: 
-<a href="https://opendata.cbs.nl/statline/#/CBS/en/dataset/85055eng/table?ts=1727687837173">https://opendata.cbs.nl/statline/#/CBS/en/dataset/85055eng/table?ts=1727687837173</a></p>
-<p>3.- Fraction of transport modes: 
-<a href="https://opendata.cbs.nl/statline/#/CBS/en/dataset/84710ENG/table?ts=1727863074020">https://opendata.cbs.nl/statline/#/CBS/en/dataset/84710ENG/table?ts=1727863074020</a></p>
 </div>
 </div>
 </div>
