@@ -32,7 +32,7 @@ for file in csv_files:
     df['Year'] = int(year)        # Use the year in the file name as a variable in the dataframe      
 
     commute_data = df[df['Travel motives'].str.contains('commute', case=False, na=False)]
-    total_trips_data = df[~df['Travel motives'].str.contains('commute', case=False, na=False)]
+    total_trips_data = df[~df['Travel motives'].str.contains('commute', case=False, na=False)] #As there are only 2 travel modes, anything that isnt "commute" is considered "total"
     
     commute_dfs.append(commute_data)
     total_trips_dfs.append(total_trips_data)
@@ -77,5 +77,3 @@ cols.insert(0, cols.pop(cols.index('Year')))
 merged_commute_car_df = merged_commute_car_df[cols]
 file_path = os.path.join('FinalCommuteData', 'total_commuting_data.csv')
 merged_commute_car_df.to_csv(file_path, index=False)
-
-df_head()
